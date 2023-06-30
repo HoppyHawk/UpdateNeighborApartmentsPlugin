@@ -86,6 +86,18 @@
     <Compile Include="UI\Controls\ApartmentsList.xaml.cs">
       <DependentUpon>ApartmentsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\EmptyStateView.xaml.cs">
+      <DependentUpon>EmptyStateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\LoadedStateView.xaml.cs">
+      <DependentUpon>LoadedStateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ProcessedStateView.xaml.cs">
+      <DependentUpon>ProcessedStateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ProcessingStateView.xaml.cs">
+      <DependentUpon>ProcessingStateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\StatusBar.xaml.cs">
       <DependentUpon>StatusBar.xaml</DependentUpon>
     </Compile>
@@ -97,6 +109,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Controls\ApartmentsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\EmptyStateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\LoadedStateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\ProcessedStateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\ProcessingStateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

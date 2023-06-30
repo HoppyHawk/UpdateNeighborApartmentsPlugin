@@ -12,61 +12,19 @@
         <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
     </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid Visibility="{Binding ProcessingState, 
+        <controls:EmptyStateView Visibility="{Binding ProcessingState, 
                                 Converter={converters:StateToVisibilityConverter}, 
-                                ConverterParameter={x:Static local:AnalyzeDocumentViewModelState.Empty}}" 
-              VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <TextBlock HorizontalAlignment="Center"
-                       Margin="5"
-                       Text="Поиск квартир одинаковой комнатности, примыкающих друг к другу"
-                       TextWrapping="Wrap"/>
-            <Button Content="Начать" Margin="10" Height="25" Grid.Row="1" Command="{Binding StartAnalysisCommand}"/>
-        </Grid>
+                                ConverterParameter={x:Static local:AnalyzeDocumentViewModelState.Empty}}" />
 
-        <Border Margin="10" 
-                Visibility="{Binding IsProcessing, Converter={StaticResource boolToVisibilityConverter}}">
-            <TextBlock Text="{Binding ProcessingStatus}" 
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
-        </Border>
+        <controls:ProcessingStateView Visibility="{Binding IsProcessing, Converter={StaticResource boolToVisibilityConverter}}"/>
 
-        <Grid Visibility="{Binding ProcessingState, 
+        <controls:LoadedStateView Visibility="{Binding ProcessingState, 
                                 Converter={converters:StateToVisibilityConverter}, 
-                                ConverterParameter={x:Static local:AnalyzeDocumentViewModelState.Loaded}}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <GroupBox Header="Результаты поиска:" 
-                      Margin="10">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding SearchStatistics}" TextWrapping="Wrap" Margin="10"/>
-                    <Button Content="Начать обработку" Margin="10" Height="25" Grid.Column="1" Command="{Binding UpdateAppartmentsCommand}"/>
-                </Grid>
-            </GroupBox>
-            <controls:ApartmentsList DataContext="{Binding}" Grid.Row="1" />
-        </Grid>
+                                ConverterParameter={x:Static local:AnalyzeDocumentViewModelState.Loaded}}"/>
 
-        <Border Margin="10" Visibility="{Binding ProcessingState, 
+        <controls:ProcessedStateView Visibility="{Binding ProcessingState, 
                                 Converter={converters:StateToVisibilityConverter}, 
-                                ConverterParameter={x:Static local:AnalyzeDocumentViewModelState.Processed}}" >
-            <TextBlock Text="Все помещения обработаны" 
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
-        </Border>
+                                ConverterParameter={x:Static local:AnalyzeDocumentViewModelState.Processed}}"/>
 
-        <controls:StatusBar Grid.Row="2" DataContext="{Binding}"/>
     </Grid>
 </Window>
