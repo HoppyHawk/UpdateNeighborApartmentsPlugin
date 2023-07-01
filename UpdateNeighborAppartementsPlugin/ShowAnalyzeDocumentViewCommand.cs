@@ -29,7 +29,9 @@ namespace UpdateNeighborAppartementsPlugin
             IElementsLoader elementsLoader = new DocumentElementsLoader(activeDocument);
             IElementsUpdater elementsUpdater = new RoomsColorUpdater(activeDocument);
             IDocumentTreeBuilder documentTreeBuilder = new DefaultDocumentTreeBuilder();
-            IDocumentTreeAnalyzer neighborAppartementsAnalyzer = new NeighborApartmentsAnalyzer();
+
+            INodeCombinationsFilter combinationsFilter = new CompositeNodeCombinationsFilter();
+            IDocumentTreeAnalyzer neighborAppartementsAnalyzer = new NeighborApartmentsAnalyzer(combinationsFilter);
 
             var apartmentService = new NeighborApartmentsService(elementsLoader, 
                 documentTreeBuilder, neighborAppartementsAnalyzer, elementsUpdater);

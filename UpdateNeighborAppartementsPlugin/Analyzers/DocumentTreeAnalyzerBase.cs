@@ -7,7 +7,7 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers
 {
     public abstract class DocumentTreeAnalyzerBase: IDocumentTreeAnalyzer
     {
-        public abstract List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes, INodeCombinationsFilter combinationsFilter);
+        public abstract List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes);
         
         protected IEnumerable<IEnumerable<DocumentTreeNode>> CollectChildNodes(string parentNodeType, IEnumerable<DocumentTreeNode> nodes)
         {

@@ -31,7 +31,7 @@ namespace UpdateNeighborAppartementsPlugin.Service
 
         public async Task<List<ApartmentNode>> FindDistinctNeighborApartments()
         {
-            return await FindNeighborAppartments(new DistinctNodeFilter());
+            return await FindNeighborAppartments(new CompositeNodeCombinationsFilter());
         }
 
         public async Task<List<ApartmentNode>> FindFirstNeighborApartments()
@@ -44,7 +44,7 @@ namespace UpdateNeighborAppartementsPlugin.Service
                 await LoadDocumentDataAsync();
             var nodes = documentTreeNodes;
             var findAppartmentsTask = Task.Run(() =>
-                neighborApartmentAnalyzer.Analyze(nodes, combinationsFilter).Select(n => n as ApartmentNode).ToList()
+                neighborApartmentAnalyzer.Analyze(nodes).Select(n => n as ApartmentNode).ToList()
             );
             return await findAppartmentsTask;
         }

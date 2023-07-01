@@ -7,6 +7,6 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers
 {
     public interface IDocumentTreeAnalyzer
     {
-        List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes, INodeCombinationsFilter combinationsFilter);
+        List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes);
     }
 }

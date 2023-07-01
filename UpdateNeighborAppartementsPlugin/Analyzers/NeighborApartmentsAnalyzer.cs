@@ -9,8 +9,14 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers
 {
     public class NeighborApartmentsAnalyzer : DocumentTreeAnalyzerBase
     {
-        public override List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes, 
-            INodeCombinationsFilter combinationsFilter)
+        private INodeCombinationsFilter combinationsFilter;
+
+        public NeighborApartmentsAnalyzer(INodeCombinationsFilter combinationsFilter)
+        {
+            this.combinationsFilter = combinationsFilter;
+        }
+
+        public override List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes)
         {
             var nodeComparer = new NeighborApartmentsComparer();
             var combinationsCalculator = new NodeCombinationsCalculator(nodeComparer);

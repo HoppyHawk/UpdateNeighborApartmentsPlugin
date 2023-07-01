@@ -16,11 +16,11 @@ namespace UpdateNeighborAppartementsPlugin.Tests.Analyzers
             int expectedNeighborCount = 4;
 
             var nodes = new TestDocumentTreeBuilder().MakeDocumentTree();
-            var analyzer = new NeighborApartmentsAnalyzer();
-            var filter = new DistinctNodeFilter();
-            var result = analyzer.Analyze(nodes, filter);
-            Assert.IsNotNull(result);
+            var analyzer = new NeighborApartmentsAnalyzer(new DistinctNodeFilter());
 
+            var result = analyzer.Analyze(nodes);
+
+            Assert.IsNotNull(result);
             Assert.AreEqual(expectedNeighborCount, result.Count);
         }
 
@@ -30,11 +30,11 @@ namespace UpdateNeighborAppartementsPlugin.Tests.Analyzers
             int expectedNeighborCount = 2;
 
             var nodes = new TestDocumentTreeBuilder().MakeDocumentTree();
-            var analyzer = new NeighborApartmentsAnalyzer();
-            var filter = new FirstNeighborAppartementFilter();
-            var result = analyzer.Analyze(nodes, filter);
-            Assert.IsNotNull(result);
+            var analyzer = new NeighborApartmentsAnalyzer(new FirstNeighborAppartementFilter());
+            
+            var result = analyzer.Analyze(nodes);
 
+            Assert.IsNotNull(result);
             Assert.AreEqual(expectedNeighborCount, result.Count);
         }
     }
