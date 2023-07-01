@@ -46,7 +46,7 @@ namespace UpdateNeighborAppartementsPlugin.Service
             await elementsUpdater.Update(apartment.Elements);
         }
 
-        public async Task UpdateNeighborApartments(List<ApartmentNode> appartements)
+        public async Task UpdateApartments(List<ApartmentNode> appartements)
         {
             var rooms = appartements.SelectMany(a => a.Elements).ToList();
             await elementsUpdater.Update(rooms);

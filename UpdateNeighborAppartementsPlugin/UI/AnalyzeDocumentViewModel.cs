@@ -120,7 +120,7 @@ namespace UpdateNeighborAppartementsPlugin.UI
                 foreach (var apartment in apartmentsToProcess) { 
                     await apartmentsService.UpdateApartment(apartment);
                 }
-                //await apartmentsService.UpdateNeighborApartments(apartmentsToProcess);
+                //await apartmentsService.UpdateApartments(apartmentsToProcess);
             }
             finally {
                 ProcessingState = AnalyzeDocumentViewModelState.Processed;

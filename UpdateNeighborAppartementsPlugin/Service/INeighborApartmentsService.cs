@@ -8,11 +8,9 @@ namespace UpdateNeighborAppartementsPlugin.Service
 {
     public interface INeighborApartmentsService
     {
-        //Task<List<ApartmentNode>> FindDistinctNeighborApartments();
-        //Task<List<ApartmentNode>> FindFirstNeighborApartments();
         Task<List<ApartmentNode>> GetNeighborApartments();
 
         Task UpdateApartment(ApartmentNode apartment);
-        Task UpdateNeighborApartments(List<ApartmentNode> apartments);
+        Task UpdateApartments(List<ApartmentNode> apartments);
     }
 }
