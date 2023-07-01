@@ -22,11 +22,8 @@ namespace UpdateNeighborAppartementsPlugin.UI
     public class AnalyzeDocumentViewModel : INotifyPropertyChanged
     {
         private INeighborApartmentsService apartmentsService;
-
         private List<ApartmentNode> apartments;
-        private List<ApartmentNode> apartmentsToProcess;
         private AnalyzeDocumentViewModelState processingState;
-
         private string searchStatistics;
 
         public AnalyzeDocumentViewModel(INeighborApartmentsService apartmentsService) {
@@ -105,11 +102,8 @@ namespace UpdateNeighborAppartementsPlugin.UI
             ProcessingState = AnalyzeDocumentViewModelState.Loading;
             try
             {   
-                var apartmentNodes = await LoadAppartmentNodesAsync();
-                apartmentsToProcess = await apartmentsService.FindFirstNeighborApartments();
-                foreach (var apartment in apartmentNodes)
-                    apartment.IsSelected = apartmentsToProcess.Contains(apartment);
-
+                var apartmentNodes = await apartmentsService.GetNeighborApartments();
+ 
                 Apartments = apartmentNodes;
                 UpdateSearchStatistics();
             }
@@ -118,15 +112,11 @@ namespace UpdateNeighborAppartementsPlugin.UI
             }
         }
 
-        private async Task<List<ApartmentNode>> LoadAppartmentNodesAsync()
-        {
-            return await apartmentsService.FindDistinctNeighborApartments();
-        }
-
         private async Task UpdateAppartmentsAsync() {
             ProcessingState = AnalyzeDocumentViewModelState.Processing;
             try
             {
+                var apartmentsToProcess = apartments.Where(a => a.RequiresProcessing).ToList();
                 foreach (var apartment in apartmentsToProcess) { 
                     await apartmentsService.UpdateApartment(apartment);
                 }
@@ -139,6 +129,7 @@ namespace UpdateNeighborAppartementsPlugin.UI
 
         private void UpdateSearchStatistics() {
             var apartmentCount = apartments.Count;
+            var apartmentsToProcess = apartments.Where(a => a.RequiresProcessing).ToList();
             var apartmentToProcessCount = apartmentsToProcess.Count;
             var elementCount = apartmentsToProcess.SelectMany(a => a.Elements).Count();
             SearchStatistics = $"Найдено {apartments.Count} квартир одинаковой комнатности, примыкающих друг к другу. " +

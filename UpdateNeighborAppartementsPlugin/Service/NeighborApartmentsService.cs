@@ -29,23 +29,16 @@ namespace UpdateNeighborAppartementsPlugin.Service
             this.elementsUpdater = elementsUpdater;
         }
 
-        public async Task<List<ApartmentNode>> FindDistinctNeighborApartments()
-        {
-            return await FindNeighborAppartments(new CompositeNodeCombinationsFilter());
-        }
-
-        public async Task<List<ApartmentNode>> FindFirstNeighborApartments()
-        {
-            return await FindNeighborAppartments(new FirstNeighborAppartementFilter());
-        }
-
-        private async Task<List<ApartmentNode>> FindNeighborAppartments(INodeCombinationsFilter combinationsFilter) {
+        public async Task<List<ApartmentNode>> GetNeighborApartments() {
             if (documentTreeNodes == null)
                 await LoadDocumentDataAsync();
+
             var nodes = documentTreeNodes;
+
             var findAppartmentsTask = Task.Run(() =>
                 neighborApartmentAnalyzer.Analyze(nodes).Select(n => n as ApartmentNode).ToList()
             );
+
             return await findAppartmentsTask;
         }
 
