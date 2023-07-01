@@ -20,7 +20,7 @@
             <DataTemplate>
                 <TextBlock Text="{Binding DisplayName}" x:Name="ApartmentName"/>
                 <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <DataTrigger Binding="{Binding RequiresProcessing}" Value="True">
                         <Setter TargetName="ApartmentName" Property="FontWeight" Value="SemiBold" />
                         <Setter TargetName="ApartmentName" Property="TextBlock.Foreground" Value="Red" />
                     </DataTrigger>
