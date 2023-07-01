@@ -7,7 +7,7 @@ using UpdateNeighborAppartementsPlugin.Model;
 
 namespace UpdateNeighborAppartementsPlugin.Analyzers
 {
-    public class NeighborApartmentsOfSameTypeAnalyzer : DocumentTreeAnalyzerBase
+    public class NeighborApartmentsAnalyzer : DocumentTreeAnalyzerBase
     {
         public override List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes, 
             INodeCombinationsFilter combinationsFilter)

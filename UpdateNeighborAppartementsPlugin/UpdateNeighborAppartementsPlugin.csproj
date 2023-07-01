@@ -63,7 +63,7 @@
     <Compile Include="Analyzers\IDocumentTreeAnalyzer.cs" />
     <Compile Include="Analyzers\Filters\INodeCombinationsFilter.cs" />
     <Compile Include="Analyzers\Calculators\NeighborApartmentsComparer.cs" />
-    <Compile Include="Analyzers\NeighborApartmentsOfSameTypeAnalyzer.cs" />
+    <Compile Include="Analyzers\NeighborApartmentsAnalyzer.cs" />
     <Compile Include="Analyzers\Calculators\NodeCombinationsCalculator.cs" />
     <Compile Include="DocumentTreeModel\DocumentTreeBuilder.cs" />
     <Compile Include="DocumentTreeModel\GroupRules\GroupElementsRule.cs" />
