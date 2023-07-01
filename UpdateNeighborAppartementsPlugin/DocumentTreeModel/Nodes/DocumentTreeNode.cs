@@ -11,5 +11,6 @@ namespace UpdateNeighborAppartementsPlugin.DocumentTreeModel.Nodes
         public string DisplayName { get; set; }
         public IEnumerable<DocumentTreeNode> Children { get; set; }
         public IEnumerable<Element> Elements { get; set; }
+        public bool RequiresProcessing { get; set; }
     }
 }
