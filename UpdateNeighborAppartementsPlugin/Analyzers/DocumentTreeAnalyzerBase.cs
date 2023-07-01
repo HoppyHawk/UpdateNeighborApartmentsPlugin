@@ -5,8 +5,10 @@ using UpdateNeighborAppartementsPlugin.DocumentTreeModel.Nodes;
 
 namespace UpdateNeighborAppartementsPlugin.Analyzers
 {
-    public class DocumentTreeNodeCollector
+    public abstract class DocumentTreeAnalyzerBase: IDocumentTreeAnalyzer
     {
+        public abstract List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes, INodeCombinationsFilter combinationsFilter);
+        
         protected IEnumerable<IEnumerable<DocumentTreeNode>> CollectChildNodes(string parentNodeType, IEnumerable<DocumentTreeNode> nodes)
         {
             foreach (DocumentTreeNode node in nodes)

@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Analyzers\Filters\CompositeNodeCombinationsFilter.cs" />
     <Compile Include="Analyzers\Filters\DistinctNodeFilter.cs" />
-    <Compile Include="Analyzers\DocumentTreeNodeCollector.cs" />
+    <Compile Include="Analyzers\DocumentTreeAnalyzerBase.cs" />
     <Compile Include="Analyzers\Filters\FirstNeighborAppartementFilter.cs" />
     <Compile Include="Analyzers\IDocumentTreeAnalyzer.cs" />
     <Compile Include="Analyzers\Filters\INodeCombinationsFilter.cs" />

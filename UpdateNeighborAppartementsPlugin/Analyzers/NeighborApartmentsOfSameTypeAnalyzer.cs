@@ -7,9 +7,9 @@ using UpdateNeighborAppartementsPlugin.Model;
 
 namespace UpdateNeighborAppartementsPlugin.Analyzers
 {
-    public class NeighborApartmentsOfSameTypeAnalyzer : DocumentTreeNodeCollector, IDocumentTreeAnalyzer
+    public class NeighborApartmentsOfSameTypeAnalyzer : DocumentTreeAnalyzerBase
     {
-        public List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes, 
+        public override List<DocumentTreeNode> Analyze(IEnumerable<DocumentTreeNode> nodes, 
             INodeCombinationsFilter combinationsFilter)
         {
             var nodeComparer = new NeighborApartmentsComparer();
