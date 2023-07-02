@@ -27,6 +27,7 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers
                 .AsParallel()
                 .Select(at => at.Children)
                 .Select(g => combinationsCalculator.Calculate(g))
+                .Where(c => c.Count() > 0)
                 .SelectMany(c => combinationsFilter.Apply(c))
                 .ToList();
             
