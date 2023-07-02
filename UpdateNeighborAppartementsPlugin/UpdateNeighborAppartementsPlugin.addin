@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Command">
+		<Assembly>UpdateNeighborAppartements\UpdateNeighborAppartementsPlugin.dll</Assembly>
+		<ClientId>a1bb3ea5-23c1-4df7-a8d1-cd2ea372517b</ClientId>
+		<FullClassName>UpdateNeighborAppartementsPlugin.ShowAnalyzeDocumentViewCommand</FullClassName>
+		<Text>Find neighbor apartments of the same type (size).</Text>
+		<VisibilityMode>AlwaysVisible</VisibilityMode>
+		<LanguageType>Unknown</LanguageType>
+		<VendorId>HoppyHawk</VendorId>
+		<VendorDescription>HoppyHawk</VendorDescription>
+	</AddIn>
+</RevitAddIns>
