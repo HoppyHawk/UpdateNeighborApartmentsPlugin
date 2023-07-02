@@ -12,22 +12,15 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers
             if (nodeCombinations.Count() == 0)
                 return Enumerable.Empty<DocumentTreeNode>();
 
-            var maxNodeCount = nodeCombinations.Select(nc => nc.Count()).Max();
 
-            if (maxNodeCount == 2)
-                return nodeCombinations.Select(nc => nc.First()).Distinct();
+            var supersets = nodeCombinations
+                .Select(nc1 => nodeCombinations.Where(nc2 => nc2.Intersect(nc1).Count() > 0)
+                                                .Select(nc2 => nc2.Union(nc1))
+                                                .OrderBy(nc => nc.Count()).Last()).ToList();
 
-            var longestCombinations = nodeCombinations
-                    .Where(nc => nc.Count() == maxNodeCount);
-
-            var notIntersectedCombinations = nodeCombinations
-                .Where(nc1 => longestCombinations.Select(nc2 => nc2.Intersect(nc1)).SelectMany(nc => nc).Count() == 0)
-                .Concat(longestCombinations);
-
-            var result = notIntersectedCombinations
-                .Select(nc => nc.Count() == 2
-                    ? nc.First()
-                    : nc.Where((n, i) => i % 2 != 0).First()).Distinct();
+            var result = supersets
+                .SelectMany(s => s.OrderBy(n => n.DisplayName).Where((n, i) => i % 2 != 0))
+                .Distinct();
 
             return result;
         }
