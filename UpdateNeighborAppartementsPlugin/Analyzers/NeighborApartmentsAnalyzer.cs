@@ -23,13 +23,14 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers
 
             var apartmentTypeGroups = CollectNodes(ParameterKeys.ROM_SubZone, nodes);
 
-            var apartmentGroupsByApartmentType = apartmentTypeGroups.Select(at => at.Children);
-
-            var allNeighboringCombinations = apartmentGroupsByApartmentType
-                .Select(g => combinationsCalculator.Calculate(g));
-
-            return allNeighboringCombinations.SelectMany(c => combinationsFilter.Apply(c)).ToList();
-
+            var result = apartmentTypeGroups
+                .AsParallel()
+                .Select(at => at.Children)
+                .Select(g => combinationsCalculator.Calculate(g))
+                .SelectMany(c => combinationsFilter.Apply(c))
+                .ToList();
+            
+            return result;
         }
     }
 }
