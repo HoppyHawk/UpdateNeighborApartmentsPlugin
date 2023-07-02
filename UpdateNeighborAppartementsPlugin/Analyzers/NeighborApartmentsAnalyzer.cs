@@ -21,9 +21,11 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers
             var nodeComparer = new NeighborApartmentsComparer();
             var combinationsCalculator = new NodeCombinationsCalculator(nodeComparer);
 
-            var apartmentNodesByApartmentType = CollectChildNodes(ParameterKeys.ROM_SubZone, nodes);
+            var apartmentTypeGroups = CollectNodes(ParameterKeys.ROM_SubZone, nodes);
 
-            var allNeighboringCombinations = apartmentNodesByApartmentType
+            var apartmentGroupsByApartmentType = apartmentTypeGroups.Select(at => at.Children);
+
+            var allNeighboringCombinations = apartmentGroupsByApartmentType
                 .Select(g => combinationsCalculator.Calculate(g));
 
             return allNeighboringCombinations.SelectMany(c => combinationsFilter.Apply(c)).ToList();
