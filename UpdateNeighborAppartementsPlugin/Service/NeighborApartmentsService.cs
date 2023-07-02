@@ -36,7 +36,10 @@ namespace UpdateNeighborAppartementsPlugin.Service
             var nodes = documentTreeNodes;
 
             var findAppartmentsTask = Task.Run(() =>
-                neighborApartmentAnalyzer.Analyze(nodes).Select(n => n as ApartmentNode).ToList()
+                neighborApartmentAnalyzer.Analyze(nodes)
+                    .Select(n => n as ApartmentNode)
+                    .OrderBy(a => a.Level)
+                    .ToList()
             );
 
             return await findAppartmentsTask;
@@ -62,7 +65,7 @@ namespace UpdateNeighborAppartementsPlugin.Service
         }
 
         private Task<IEnumerable<DocumentTreeNode>> BuildDocumentTreeAsync(List<Element> elements) {
-            return Task.Run(() => documentTreeBuilder.Build(elements).Where(n => n.DisplayName == "Этаж 03"));
+            return Task.Run(() => documentTreeBuilder.Build(elements)/*.Where(n => n.DisplayName == "Этаж 03")*/);
         }
     }
 }
