@@ -12,7 +12,7 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers.Calculators
             var apartment1 = x as ApartmentNode;
             var apartment2 = y as ApartmentNode;
 
-            if (apartment1 == null | apartment2 == null)
+            if (apartment1 == null || apartment2 == null)
                 return -1;
 
             return AreNeighbors(apartment1, apartment2) ? 0 : -1;
