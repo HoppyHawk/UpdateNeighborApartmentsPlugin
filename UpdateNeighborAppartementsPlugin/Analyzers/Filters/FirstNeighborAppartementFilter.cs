@@ -9,7 +9,7 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers
     {
         public IEnumerable<DocumentTreeNode> Apply(IEnumerable<IEnumerable<DocumentTreeNode>> nodeCombinations)
         {
-            if (nodeCombinations.Count() == 0)
+            if (nodeCombinations == null || nodeCombinations.Count() == 0)
                 return Enumerable.Empty<DocumentTreeNode>();
 
 
