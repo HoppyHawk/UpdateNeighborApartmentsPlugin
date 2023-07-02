@@ -19,7 +19,7 @@ namespace UpdateNeighborAppartementsPlugin.Analyzers
         public IEnumerable<DocumentTreeNode> Apply(IEnumerable<IEnumerable<DocumentTreeNode>> nodeCombinations)
         {
             var distinctNodes = distinctNodeFilter.Apply(nodeCombinations).ToList();
-            var firstNeighbors = firstNeighborFilter.Apply(nodeCombinations);
+            var firstNeighbors = firstNeighborFilter.Apply(nodeCombinations).ToList();
             distinctNodes.ForEach(n => n.RequiresProcessing = firstNeighbors.Contains(n));
             return distinctNodes;
         }
