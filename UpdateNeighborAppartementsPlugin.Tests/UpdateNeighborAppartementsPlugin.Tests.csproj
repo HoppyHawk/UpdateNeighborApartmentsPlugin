@@ -71,6 +71,7 @@
     <Compile Include="Analyzers\NodeCombinationsCalculatorTests.cs" />
     <Compile Include="Analyzers\NeighborApartmentsComparerTests.cs" />
     <Compile Include="Analyzers\NeighborApartmentsAnalyzerTests.cs" />
+    <Compile Include="Analyzers\FirstNeighborAppartementFilterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
